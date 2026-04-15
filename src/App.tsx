@@ -153,6 +153,7 @@ const CLI_REFERENCE_URL = `${GITHUB_URL}/blob/master/docs/cli-reference.md`;
 const ARCHITECTURE_URL = `${GITHUB_URL}/blob/master/docs/architecture.md`;
 const WORK_EXAMPLE_URL = `${GITHUB_URL}/blob/master/docs/work-example.md`;
 const AGENT_INIT_PROMPT_URL = `${GITHUB_URL}/blob/master/AGENT_INIT_PROMPT.md`;
+const CHANGELOG_URL = `${GITHUB_URL}/blob/master/CHANGELOG.md`;
 
 const docCards = [
   {
@@ -211,6 +212,20 @@ const startSteps: WorkflowStep[] = [
     title: "Feed the prompt to the agent",
     description: "`AGENT_INIT_PROMPT.md` is the onboarding handoff: the agent reuses init answers, confirms active files, and completes `garda agent-init`.",
     icon: Workflow,
+  },
+];
+
+const releases = [
+  {
+    version: "1.0.0",
+    title: "First public GARDA release",
+    summary:
+      "Establishes the current public baseline for local agent orchestration: runtime, gates, provider bridges, profiles, cleanup flows, and audit trail.",
+    notes: [
+      "Public release line reset under the Garda name.",
+      "Package version and workspace version aligned to 1.0.0.",
+      "Current orchestration runtime shipped as the new baseline.",
+    ],
   },
 ];
 
@@ -454,31 +469,32 @@ function Badge({
   );
 }
 
-function StageCard({
-  label,
-  icon: Icon,
-  on,
-  successColor = "emerald",
-}: {
-  label: string;
-  icon: LucideIcon;
-  on: boolean;
-  successColor?: "emerald" | "cyan";
-}) {
-  const active =
-    successColor === "cyan"
-      ? "border-cyan-300/25 bg-cyan-300/12 text-cyan-100"
-      : "border-emerald-400/25 bg-emerald-400/12 text-emerald-100";
+function scrollToSection(id: string) {
+  const element = document.getElementById(id);
+  if (!element) return;
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  element.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+
+  const hash = `#${id}`;
+  if (window.location.hash !== hash) {
+    window.history.replaceState(null, "", hash);
+  }
+}
+
+function ScrollButton({
+  targetId,
+  className,
+  children,
+}: {
+  targetId: string;
+  className: string;
+  children: React.ReactNode;
+}) {
   return (
-    <motion.div
-      initial={{ opacity: 0.2, y: 10, scale: 0.98 }}
-      animate={{ opacity: on ? 1 : 0.2, y: on ? 0 : 10, scale: on ? 1 : 0.98 }}
-      className={`rounded-[26px] border p-6 ${on ? active : "border-white/10 bg-white/5 text-white/50"}`}
-    >
-      <Icon className="mb-4 h-6 w-6" />
-      <div className="text-2xl font-semibold">{label}</div>
-    </motion.div>
+    <button type="button" onClick={() => scrollToSection(targetId)} className={className}>
+      {children}
+    </button>
   );
 }
 
@@ -716,6 +732,21 @@ function DemoPanel() {
   );
 }
 
+function InstallShortcut() {
+  return (
+    <ScrollButton
+      targetId="start"
+      className="fixed inset-x-4 bottom-4 z-40 inline-flex items-center justify-center gap-3 rounded-full border border-cyan-300/30 bg-[#08121a]/92 px-5 py-3 text-sm font-medium text-cyan-50 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-cyan-300/12 sm:inset-x-auto sm:right-4"
+    >
+      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">
+        <TerminalSquare className="h-4 w-4" />
+      </span>
+      <span>Install</span>
+      <ArrowRight className="h-4 w-4" />
+    </ScrollButton>
+  );
+}
+
 export default function GardaLandingPage() {
   return (
     <div className="min-h-screen bg-[#04070d] text-white">
@@ -736,12 +767,13 @@ export default function GardaLandingPage() {
             </div>
           </div>
           <nav className="hidden items-center gap-6 text-sm text-white/62 md:flex">
-            <a href="#why" className="hover:text-white">Why</a>
-            <a href="#demo" className="hover:text-white">Demo</a>
-            <a href="#profiles" className="hover:text-white">Profiles</a>
-            <a href="#workflow" className="hover:text-white">Workflow</a>
-            <a href="#docs" className="hover:text-white">Docs</a>
-            <a href="#start" className="hover:text-white">Start</a>
+            <ScrollButton targetId="why" className="bg-transparent hover:text-white">Why</ScrollButton>
+            <ScrollButton targetId="demo" className="bg-transparent hover:text-white">Demo</ScrollButton>
+            <ScrollButton targetId="profiles" className="bg-transparent hover:text-white">Profiles</ScrollButton>
+            <ScrollButton targetId="workflow" className="bg-transparent hover:text-white">Workflow</ScrollButton>
+            <ScrollButton targetId="docs" className="bg-transparent hover:text-white">Docs</ScrollButton>
+            <ScrollButton targetId="versions" className="bg-transparent hover:text-white">Versions</ScrollButton>
+            <ScrollButton targetId="start" className="bg-transparent hover:text-white">Start</ScrollButton>
             <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white">GitHub</a>
           </nav>
         </div>
@@ -778,13 +810,13 @@ export default function GardaLandingPage() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#start"
+                <ScrollButton
+                  targetId="start"
                   className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 shadow-[0_0_40px_rgba(34,211,238,0.08)] transition hover:bg-cyan-300/15"
                 >
                   Start with the real CLI
                   <ChevronRight className="h-4 w-4" />
-                </a>
+                </ScrollButton>
                 <a
                   href={GITHUB_URL}
                   target="_blank"
@@ -957,7 +989,65 @@ export default function GardaLandingPage() {
           </div>
         </section>
 
-        <section id="start" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <section id="versions" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <SectionTitle
+            eyebrow="Versions"
+            title="Release notes on the landing page, not buried in the repo"
+            body="Start with the current public baseline. For now that means `v1.0.0`, with the full change log available in GitHub."
+          />
+          <div className="mt-14 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+            {releases.map((release) => (
+              <div key={release.version} className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100">
+                    v{release.version}
+                  </div>
+                  <div className="text-sm uppercase tracking-[0.24em] text-white/42">Current public baseline</div>
+                </div>
+                <h3 className="mt-6 text-3xl font-semibold text-white">{release.title}</h3>
+                <p className="mt-4 max-w-3xl text-base leading-7 text-white/62">{release.summary}</p>
+                <div className="mt-8 grid gap-3">
+                  {release.notes.map((note) => (
+                    <div key={note} className="flex items-start gap-3 rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/70">
+                      <div className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-300" />
+                      <div>{note}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <div className="grid gap-6">
+              <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
+                <div className="mb-3 text-sm uppercase tracking-[0.28em] text-cyan-200/72">Changelog</div>
+                <h3 className="text-2xl font-semibold text-white">Need the full release history?</h3>
+                <p className="mt-4 leading-7 text-white/62">
+                  The repository already carries the canonical `CHANGELOG.md`. The landing page should stay brief, while GitHub keeps the full source of truth.
+                </p>
+                <a
+                  href={CHANGELOG_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 transition hover:bg-cyan-300/15"
+                >
+                  Open full changelog
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+
+              <Window title="current release">
+                <div className="space-y-2 px-5 py-5 font-mono text-[14px] leading-6 text-white/82 md:text-[15px]">
+                  <div>Version: 1.0.0</div>
+                  <div>Status: first public release</div>
+                  <div>Line: Garda public release series</div>
+                  <div>Baseline: runtime + gates + bridges + audit trail</div>
+                </div>
+              </Window>
+            </div>
+          </div>
+        </section>
+
+        <section id="start" className="mx-auto max-w-7xl scroll-mt-28 px-6 py-20 lg:px-10">
           <SectionTitle
             eyebrow="Get Started"
             title="Use the actual onboarding flow from the repository"
@@ -1059,6 +1149,7 @@ export default function GardaLandingPage() {
           </div>
         </section>
       </main>
+      <InstallShortcut />
     </div>
   );
 }
