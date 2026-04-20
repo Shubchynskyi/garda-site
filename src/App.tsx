@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   AlertTriangle,
   ArrowRight,
+  BookOpen,
   CheckCircle2,
   ChevronRight,
   FileWarning,
@@ -32,7 +33,7 @@ const DEMO_SCENES = [
     kind: "workflow",
     label: "Workflow",
     theme: "with",
-    title: "GARDA moves one task through the same gates every time",
+    title: "Garda moves one task through the same gates every time",
     subtitle: "Preflight, compile, required reviews, and completion happen in order before anyone treats the output as done.",
   },
   {
@@ -76,23 +77,23 @@ type WorkflowStep = {
 
 const comparison: ComparisonCard[] = [
   {
-    title: "Without GARDA",
+    title: "Without Garda",
     tone: "without",
     points: [
-      "Task depth is inconsistent.",
-      "Build, tests, and review can drift apart.",
-      "One fix can reveal the next failure only after another run.",
-      "Agents can cut corners or declare success too early.",
+      "The agent jumps straight into edits.",
+      "Tests, reviews, and docs checks depend on discipline.",
+      "Completion means whatever the agent claims is done.",
+      "There is no shared audit trail for another human to inspect.",
     ],
   },
   {
-    title: "With GARDA",
+    title: "With Garda",
     tone: "with",
     points: [
-      "One universal workflow for every agent.",
-      "Preflight and classification happen before deeper execution.",
-      "Compile, reviews, and completion stay in order.",
-      "Tasks pass only with proof and tamper-evident evidence.",
+      "Every agent follows the same task workflow.",
+      "Preflight classifies scope and risk before implementation.",
+      "Compile, required reviews, doc-impact, and completion run in order.",
+      "The task ends with review artifacts and tamper-evident history.",
     ],
   },
 ];
@@ -119,15 +120,15 @@ const profiles: Profile[] = [
   {
     name: "Docs-only",
     description: "For documentation work without unnecessary code-review overhead.",
-    icon: FileWarning,
+    icon: BookOpen,
     accent: "from-fuchsia-400/20 to-fuchsia-400/5",
   },
 ];
 
 const workflowSteps: WorkflowStep[] = [
   {
-    title: "Enter task mode",
-    description: "Start from one controlled path instead of jumping directly into edits.",
+    title: "Enter governed task mode",
+    description: "Start from one controlled path instead of letting an agent improvise its own workflow.",
     icon: Workflow,
   },
   {
@@ -136,47 +137,54 @@ const workflowSteps: WorkflowStep[] = [
     icon: AlertTriangle,
   },
   {
-    title: "Compile and review",
-    description: "Run build gates and independent specialist reviews in a defined order.",
+    title: "Run compile and reviews",
+    description: "Compile, specialist reviews, and doc-impact happen in a defined order.",
     icon: Wrench,
   },
   {
     title: "Complete with proof",
-    description: "Finish with completion checks and tamper-evident task events.",
+    description: "Finish with completion checks, review artifacts, and task-event history.",
     icon: Shield,
   },
 ];
 
 const GITHUB_URL = "https://github.com/Shubchynskyi/garda-agent-orchestrator";
-const USER_GUIDE_URL = `${GITHUB_URL}/blob/master/HOW_TO.md`;
-const CLI_REFERENCE_URL = `${GITHUB_URL}/blob/master/docs/cli-reference.md`;
-const ARCHITECTURE_URL = `${GITHUB_URL}/blob/master/docs/architecture.md`;
-const WORK_EXAMPLE_URL = `${GITHUB_URL}/blob/master/docs/work-example.md`;
-const AGENT_INIT_PROMPT_URL = `${GITHUB_URL}/blob/master/AGENT_INIT_PROMPT.md`;
-const CHANGELOG_URL = `${GITHUB_URL}/blob/master/CHANGELOG.md`;
+const DOC_BRANCH = "master";
+const repoFile = (path: string) => `${GITHUB_URL}/blob/${DOC_BRANCH}/${path}`;
+
+const USER_GUIDE_URL = repoFile("HOW_TO.md");
+const CLI_REFERENCE_URL = repoFile("docs/cli-reference.md");
+const ARCHITECTURE_URL = repoFile("docs/architecture.md");
+const WORK_EXAMPLE_URL = repoFile("docs/work-example.md");
+const AGENT_INIT_PROMPT_URL = repoFile("AGENT_INIT_PROMPT.md");
+const CHANGELOG_URL = repoFile("CHANGELOG.md");
+const NPM_PACKAGE_URL = "https://www.npmjs.com/package/garda-agent-orchestrator";
+const SOCKET_PACKAGE_URL = "https://socket.dev/npm/package/garda-agent-orchestrator";
+const SOCKET_BADGE_URL = "https://socket.dev/api/badge/npm/package/garda-agent-orchestrator";
+const INSTALL_COMMAND = "npm install -g garda-agent-orchestrator\ngarda setup";
 
 const docCards = [
   {
     title: "User Guide",
-    body: "Follow the real setup flow from the repository instead of guessing the install and onboarding path.",
+    body: "Follow the setup and onboarding path for installing Garda and preparing a repository.",
     href: USER_GUIDE_URL,
     cta: "Open HOW_TO.md",
   },
   {
     title: "CLI Reference",
-    body: "Check the public commands, flags, and lifecycle semantics for setup, agent-init, profiles, updates, and uninstall.",
+    body: "Review the public commands, flags, and lifecycle semantics for setup, agent-init, profiles, updates, and cleanup.",
     href: CLI_REFERENCE_URL,
     cta: "View command reference",
   },
   {
     title: "Architecture",
-    body: "Read how GARDA deploys canonical rules, bridge profiles, and one workflow surface across providers.",
+    body: "Read how Garda applies one workflow surface, bridge profiles, and enforced gates across providers.",
     href: ARCHITECTURE_URL,
     cta: "Read architecture",
   },
   {
     title: "Work Example",
-    body: "See the full task lifecycle from TODO to DONE with profiles, reviews, and task-event evidence.",
+    body: "See the full task lifecycle from TODO to DONE with profiles, reviews, and inspectable task-event history.",
     href: WORK_EXAMPLE_URL,
     cta: "Open workflow example",
   },
@@ -184,23 +192,23 @@ const docCards = [
 
 const heroHighlights = [
   {
-    title: "Choose the right execution depth",
-    body: "Use balanced, fast, strict, or docs-only based on the task instead of improvising depth on every run.",
+    title: "Govern existing agents",
+    body: "Use Claude, Codex, Copilot, Cursor, Gemini and others without letting each one invent its own workflow.",
   },
   {
-    title: "Run the gates in the right order",
-    body: "Keep preflight, compile, reviews, doc-impact, and completion in one predictable path to done.",
+    title: "Force quality gates",
+    body: "Preflight, compile, required reviews, doc-impact, and completion run in a predictable order.",
   },
   {
-    title: "Leave proof behind",
-    body: "Keep review artifacts and task-event history instead of relying on a fragile 'looks done' reply.",
+    title: "Leave an audit trail",
+    body: "Review artifacts, gate summaries, and task-event history make completion inspectable.",
   },
 ];
 
 const startSteps: WorkflowStep[] = [
   {
-    title: "Install the real CLI",
-    description: "Use the published package name `garda-agent-orchestrator` or the one-off `npx` fallback from the repository docs.",
+    title: "Install Garda",
+    description: "Use the published package name `garda-agent-orchestrator` to install the local governance CLI.",
     icon: TerminalSquare,
   },
   {
@@ -209,23 +217,9 @@ const startSteps: WorkflowStep[] = [
     icon: ShieldCheck,
   },
   {
-    title: "Feed the prompt to the agent",
-    description: "`AGENT_INIT_PROMPT.md` is the onboarding handoff: the agent reuses init answers, confirms active files, and completes `garda agent-init`.",
+    title: "Hand the prompt to the agent",
+    description: "`AGENT_INIT_PROMPT.md` is the onboarding handoff so the agent can initialize the managed workflow with `garda agent-init`.",
     icon: Workflow,
-  },
-];
-
-const releases = [
-  {
-    version: "1.0.0",
-    title: "First public GARDA release",
-    summary:
-      "Establishes the current public baseline for local agent orchestration: runtime, gates, provider bridges, profiles, cleanup flows, and audit trail.",
-    notes: [
-      "Public release line reset under the Garda name.",
-      "Package version and workspace version aligned to 1.0.0.",
-      "Current orchestration runtime shipped as the new baseline.",
-    ],
   },
 ];
 
@@ -259,15 +253,15 @@ function useSceneTimer(key: string) {
 
 function glowFor(kind: SceneKind) {
   if (kind === "proof") {
-    return "from-emerald-500/18 via-cyan-400/10 to-transparent";
+    return "from-emerald-500/[0.18] via-cyan-400/10 to-transparent";
   }
   if (kind === "workflow") {
-    return "from-cyan-500/18 via-emerald-400/10 to-transparent";
+    return "from-cyan-500/[0.18] via-emerald-400/10 to-transparent";
   }
   if (kind === "ungoverned") {
-    return "from-rose-500/18 via-amber-400/10 to-transparent";
+    return "from-rose-500/[0.18] via-amber-400/10 to-transparent";
   }
-  return "from-cyan-400/14 via-emerald-400/10 to-transparent";
+  return "from-cyan-400/[0.14] via-emerald-400/10 to-transparent";
 }
 
 function SectionTitle({ eyebrow, title, body }: { eyebrow?: string; title: string; body?: string }) {
@@ -317,7 +311,7 @@ function Terminal({ sceneKey, lines }: { sceneKey: string; lines: TerminalLine[]
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: shown ? 1 : 0, x: shown ? 0 : -8 }}
               transition={{ duration: 0.18 }}
-              className={`rounded-xl px-3 py-1.5 whitespace-pre-wrap break-words ${color}`}
+              className={`rounded-xl px-3 py-1.5 whitespace-pre-wrap wrap-break-word ${color}`}
             >
               {shown ? line.text : " "}
             </motion.div>
@@ -340,10 +334,10 @@ function Editor({
   const elapsed = useSceneTimer(`${sceneKey}:editor`);
   const bg =
     accent === "emerald"
-      ? "bg-emerald-400/14"
+      ? "bg-emerald-400/[0.14]"
       : accent === "rose"
-      ? "bg-rose-400/14"
-      : "bg-cyan-400/14";
+      ? "bg-rose-400/[0.14]"
+      : "bg-cyan-400/[0.14]";
 
   const snippets = useMemo(() => {
     if (files.includes("tests/checkout.spec.ts")) {
@@ -432,10 +426,10 @@ function Editor({
             key={`${sceneKey}-line-${i}`}
             initial={{ opacity: 0.18, y: 4 }}
             animate={{ opacity: elapsed > i * 85 ? 1 : 0.18, y: elapsed > i * 85 ? 0 : 4 }}
-            className="grid grid-cols-[28px_1fr] gap-4 rounded-xl px-3 py-1 hover:bg-white/[0.03]"
+            className="grid grid-cols-[28px_1fr] gap-4 rounded-xl px-3 py-1 hover:bg-white/3"
           >
             <span className="pt-0.5 text-right text-white/22">{i + 1}</span>
-            <span className="whitespace-pre-wrap break-words">{line}</span>
+            <span className="whitespace-pre-wrap wrap-break-word">{line}</span>
           </motion.div>
         ))}
       </div>
@@ -494,6 +488,28 @@ function ScrollButton({
   return (
     <button type="button" onClick={() => scrollToSection(targetId)} className={className}>
       {children}
+    </button>
+  );
+}
+
+function CopyButton({ value }: { value: string }) {
+  const [copied, setCopied] = useState(false);
+
+  return (
+    <button
+      type="button"
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(value);
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 1400);
+        } catch {
+          setCopied(false);
+        }
+      }}
+      className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 transition hover:bg-white/10"
+    >
+      {copied ? "Copied" : "Copy"}
     </button>
   );
 }
@@ -566,7 +582,7 @@ function DemoScene({ kind }: { kind: SceneKind }) {
                 key={label}
                 initial={{ opacity: 0.18, y: 8 }}
                 animate={{ opacity: elapsed > index * 240 + 400 ? 1 : 0.18, y: elapsed > index * 240 + 400 ? 0 : 8 }}
-                className="rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-4 text-base font-medium text-white/82"
+                className="rounded-[20px] border border-white/10 bg-white/4 px-4 py-4 text-base font-medium text-white/82"
               >
                 {label}
               </motion.div>
@@ -603,7 +619,7 @@ function DemoScene({ kind }: { kind: SceneKind }) {
               key={item.title}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: elapsed > index * 220 + 120 ? 1 : 0.24, y: elapsed > index * 220 + 120 ? 0 : 10 }}
-              className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl"
+              className="rounded-3xl border border-white/10 bg-white/4 p-5 backdrop-blur-xl"
             >
               <div className="mb-3 inline-flex rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-3 text-emerald-100">
                 <Icon className="h-5 w-5" />
@@ -672,11 +688,11 @@ function DemoPanel() {
   }, [autoplay, index]);
 
   return (
-    <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_30px_100px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:p-6">
+    <div className="rounded-4xl border border-white/10 bg-white/4 p-4 shadow-[0_30px_100px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:p-6">
       <div className="mb-6 border-b border-white/10 pb-6">
         <div className="space-y-3">
           <ThemePill theme={activeScene.theme} />
-          <div className="min-h-[132px] md:min-h-[120px]">
+          <div className="min-h-33 md:min-h-30">
             <div className="text-xs uppercase tracking-[0.28em] text-white/42">{activeScene.label}</div>
             <div className="mt-2 text-2xl font-semibold text-white md:text-3xl">{activeScene.title}</div>
             <p className="mt-3 text-sm leading-6 text-white/58 md:text-base">{activeScene.subtitle}</p>
@@ -712,9 +728,9 @@ function DemoPanel() {
         </div>
       </div>
 
-      <div className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br ${gradient} p-5 transition-all duration-700 md:p-8`}>
+      <div className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-linear-to-br ${gradient} p-5 transition-all duration-700 md:p-8`}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.08),transparent_30%),radial-gradient(circle_at_85%_20%,rgba(16,185,129,0.08),transparent_24%),linear-gradient(180deg,rgba(4,7,13,0.65)_0%,rgba(7,16,25,0.72)_60%,rgba(4,7,13,0.82)_100%)]" />
-        <div className="relative z-10 min-h-[520px]">
+        <div className="relative z-10 min-h-130">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeScene.id}
@@ -748,12 +764,26 @@ function InstallShortcut() {
 }
 
 export default function GardaLandingPage() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <div className="min-h-screen bg-[#04070d] text-white">
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.08),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.08),transparent_24%),linear-gradient(180deg,#04070d_0%,#071019_50%,#04070d_100%)]" />
-      <motion.div className="fixed -left-20 top-10 -z-10 h-80 w-80 rounded-full bg-cyan-400/8 blur-3xl" animate={{ y: [0, -18, 0] }} transition={{ duration: 8, repeat: Infinity }} />
-      <motion.div className="fixed right-0 top-1/3 -z-10 h-80 w-80 rounded-full bg-fuchsia-400/7 blur-3xl" animate={{ y: [0, 16, 0] }} transition={{ duration: 10, repeat: Infinity }} />
-      <motion.div className="fixed bottom-0 left-1/3 -z-10 h-80 w-80 rounded-full bg-emerald-400/7 blur-3xl" animate={{ y: [0, -12, 0] }} transition={{ duration: 9, repeat: Infinity }} />
+      <motion.div
+        className="fixed -left-20 top-10 -z-10 h-80 w-80 rounded-full bg-cyan-400/8 blur-3xl"
+        animate={prefersReducedMotion ? undefined : { y: [0, -18, 0] }}
+        transition={prefersReducedMotion ? undefined : { duration: 8, repeat: Infinity }}
+      />
+      <motion.div
+        className="fixed right-0 top-1/3 -z-10 h-80 w-80 rounded-full bg-fuchsia-400/[0.07] blur-3xl"
+        animate={prefersReducedMotion ? undefined : { y: [0, 16, 0] }}
+        transition={prefersReducedMotion ? undefined : { duration: 10, repeat: Infinity }}
+      />
+      <motion.div
+        className="fixed bottom-0 left-1/3 -z-10 h-80 w-80 rounded-full bg-emerald-400/[0.07] blur-3xl"
+        animate={prefersReducedMotion ? undefined : { y: [0, -12, 0] }}
+        transition={prefersReducedMotion ? undefined : { duration: 9, repeat: Infinity }}
+      />
 
       <header className="sticky top-0 z-30 border-b border-white/8 bg-[#04070d]/65 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
@@ -763,18 +793,17 @@ export default function GardaLandingPage() {
             </div>
             <div>
               <div className="text-lg font-semibold tracking-[0.2em]">GARDA</div>
-              <div className="text-[11px] uppercase tracking-[0.28em] text-white/35">orchestration for AI coding workflows</div>
+              <div className="text-[11px] uppercase tracking-[0.28em] text-white/35">governed workflows for AI coding agents</div>
             </div>
           </div>
           <nav className="hidden items-center gap-6 text-sm text-white/62 md:flex">
             <ScrollButton targetId="why" className="bg-transparent hover:text-white">Why</ScrollButton>
             <ScrollButton targetId="demo" className="bg-transparent hover:text-white">Demo</ScrollButton>
-            <ScrollButton targetId="profiles" className="bg-transparent hover:text-white">Profiles</ScrollButton>
             <ScrollButton targetId="workflow" className="bg-transparent hover:text-white">Workflow</ScrollButton>
             <ScrollButton targetId="docs" className="bg-transparent hover:text-white">Docs</ScrollButton>
-            <ScrollButton targetId="versions" className="bg-transparent hover:text-white">Versions</ScrollButton>
-            <ScrollButton targetId="start" className="bg-transparent hover:text-white">Start</ScrollButton>
-            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white">GitHub</a>
+            <ScrollButton targetId="start" className="bg-transparent hover:text-white">Install</ScrollButton>
+            <ScrollButton targetId="security" className="bg-transparent hover:text-white">Security</ScrollButton>
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
           </nav>
         </div>
       </header>
@@ -788,64 +817,70 @@ export default function GardaLandingPage() {
                 AI coding agents need a workflow, not just a prompt.
               </div>
               <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] text-white md:text-5xl lg:text-6xl">
-                Ship AI-generated code with gates, not vibes.
+                Make AI coding agents follow the same gates every time.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/62">
-                Governed local agent orchestration for AI coding workflows. GARDA deploys canonical rules, mandatory quality gates, and token-usage optimization into any project without replacing your existing coding agent.
+                Garda is a local governance layer for Claude, Codex, Copilot, Cursor, Gemini and other AI coding agents. It works best in CLI mode, where it can force every task through task mode, preflight, compile checks, required reviews, doc-impact checks, and completion gates before the work is treated as done.
               </p>
               <div className="mt-10 grid gap-3 lg:grid-cols-3">
                 {heroHighlights.map((point, index) => (
                   <div
                     key={point.title}
-                    className="grid h-full gap-4 rounded-[24px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl"
+                    className="grid h-full gap-4 rounded-3xl border border-white/10 bg-white/4 p-5 backdrop-blur-xl"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100">
                       0{index + 1}
                     </div>
                     <div>
-                      <h3 className="text-base font-semibold text-white lg:min-h-[56px]">{point.title}</h3>
+                      <h3 className="text-base font-semibold text-white lg:min-h-14">{point.title}</h3>
                       <p className="mt-2 text-sm leading-6 text-white/62">{point.body}</p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <ScrollButton
-                  targetId="start"
-                  className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 shadow-[0_0_40px_rgba(34,211,238,0.08)] transition hover:bg-cyan-300/15"
-                >
-                  Start with the real CLI
-                  <ChevronRight className="h-4 w-4" />
-                </ScrollButton>
                 <a
                   href={GITHUB_URL}
                   target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 shadow-[0_0_40px_rgba(34,211,238,0.08)] transition hover:bg-cyan-300/15"
                 >
-                  Open GitHub
+                  View on GitHub
                   <ArrowRight className="h-4 w-4" />
                 </a>
+                <ScrollButton
+                  targetId="start"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                >
+                  Install with npm
+                  <ChevronRight className="h-4 w-4" />
+                </ScrollButton>
+                <ScrollButton
+                  targetId="demo"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-transparent px-5 py-3 text-sm font-medium text-white/72 transition hover:border-white/20 hover:text-white"
+                >
+                  Watch demo
+                </ScrollButton>
               </div>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-white/44">
-                Public package: `garda-agent-orchestrator`. Public commands: `garda`, `gao`, `garda-agent-orchestrator`.
+                Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
               </p>
               <div className="mt-8 flex flex-wrap gap-2 text-sm text-white/62">
-                <Badge icon={Workflow} text="8 providers" />
-                <Badge icon={ShieldCheck} text="9 review types" />
-                <Badge icon={CheckCircle2} text="Token economy" />
+                <Badge icon={Workflow} text="8 coding agents" />
+                <Badge icon={ShieldCheck} text="Mandatory gates" />
+                <Badge icon={CheckCircle2} text="Auditable completion" />
               </div>
             </div>
 
             <div className="grid gap-4">
-              <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
-                <div className="mb-3 text-xs uppercase tracking-[0.28em] text-cyan-200/72">Product Snapshot</div>
+              <div className="rounded-[28px] border border-white/10 bg-white/4 p-6 backdrop-blur-xl">
+                <div className="mb-3 text-xs uppercase tracking-[0.28em] text-cyan-200/72">Governance Snapshot</div>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   {[
-                    "Public package: garda-agent-orchestrator",
+                    "Local governance layer for existing coding agents",
                     "Mandatory gates: preflight, compile, reviews, doc-impact, completion",
-                    "Providers: Claude, Codex, Copilot, Gemini, Qwen, Windsurf, Junie, Antigravity",
-                    "Outputs: review artifacts, gate summaries, task-event history",
+                    "Works with Claude, Codex, Copilot, Cursor, Gemini, Qwen, Windsurf, Junie, and Antigravity. Best in CLI mode.",
+                    "Artifacts: review outputs, gate summaries, and task-event history",
                   ].map((item) => (
                     <div key={item} className="rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/68">
                       {item}
@@ -856,17 +891,18 @@ export default function GardaLandingPage() {
 
               <Window title="first run">
                 <div className="space-y-2 px-5 py-5 font-mono text-[14px] leading-6 text-white/82 md:text-[15px]">
-                  <div>npm install -g garda-agent-orchestrator</div>
-                  <div>garda setup</div>
+                  {INSTALL_COMMAND.split("\n").map((line) => (
+                    <div key={line}>{line}</div>
+                  ))}
                   <div># give AGENT_INIT_PROMPT.md to your coding agent</div>
                   <div># the agent completes garda agent-init</div>
                 </div>
               </Window>
 
-              <div className="rounded-[28px] border border-cyan-300/15 bg-cyan-300/[0.06] p-6 backdrop-blur-xl">
-                <div className="text-sm font-semibold text-white">What this fixes</div>
+              <div className="rounded-[28px] border border-cyan-300/15 bg-cyan-300/6 p-6 backdrop-blur-xl">
+                <div className="text-sm font-semibold text-white">Why this lands</div>
                 <p className="mt-3 leading-7 text-white/62">
-                  The agent does not jump straight into edits and then declare success. GARDA makes task depth, reviews, and completion explicit before code is treated as done.
+                  Garda does not replace your coding agent. It makes task entry, gates, reviews, and completion explicit before work can be treated as done.
                 </p>
               </div>
             </div>
@@ -877,7 +913,7 @@ export default function GardaLandingPage() {
           <SectionTitle
             eyebrow="Demo"
             title="See the workflow in motion"
-            body="Three scenes: what unguided output looks like, how GARDA forces the workflow, and what proof looks like when the task is actually done."
+            body="Three scenes show what unguided output looks like, how Garda forces the workflow, and what completion looks like once the artifacts exist."
           />
           <div className="mt-12">
             <DemoPanel />
@@ -886,9 +922,9 @@ export default function GardaLandingPage() {
 
         <section id="why" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <SectionTitle
-            eyebrow="Why GARDA"
-            title="The difference between fast AI output and controlled delivery"
-            body="Agents can generate code quickly. Shipping still needs structure, review, and proof. GARDA makes those gates explicit and repeatable across providers."
+            eyebrow="Why Garda"
+            title="What changes when the workflow is governed"
+            body="Agents can generate code quickly. Shipping still needs structure, review, and proof. Garda makes those gates explicit and repeatable across providers."
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
             {comparison.map((card) => (
@@ -916,39 +952,81 @@ export default function GardaLandingPage() {
           </div>
         </section>
 
-        <section id="profiles" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <section id="not-prompts" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <SectionTitle
-            eyebrow="Profiles"
-            title="Different tasks need different strictness"
-            body="Profiles make AI execution practical. Small tasks stay lightweight. Risky changes go deeper."
+            eyebrow="Not just prompts"
+            title="Garda is a runtime layer, not a prompt pack"
+            body="Prompt files can suggest behavior. Garda enforces workflow structure with a local CLI, lifecycle state, mandatory gates, review artifacts, and auditable completion."
           />
           <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {profiles.map((profile) => {
-              const Icon = profile.icon;
+            {[
+              {
+                title: "Runtime contract",
+                body: "A Node and TypeScript CLI controls setup, task mode, profiles, updates, cleanup, and validation.",
+                icon: TerminalSquare,
+              },
+              {
+                title: "Mandatory gates",
+                body: "Preflight, compile, reviews, doc-impact, and completion are part of the workflow, not optional habits.",
+                icon: ShieldCheck,
+              },
+              {
+                title: "Review artifacts",
+                body: "Specialist reviews leave inspectable outputs before a task can be treated as complete.",
+                icon: FileWarning,
+              },
+              {
+                title: "Audit trail",
+                body: "Task-event history records how work moved through the lifecycle.",
+                icon: GitBranch,
+              },
+            ].map((item) => {
+              const Icon = item.icon;
               return (
-                <div key={profile.name} className={`rounded-[28px] border border-white/10 bg-gradient-to-b ${profile.accent} p-6 backdrop-blur-xl`}>
-                  <div className="mb-5 inline-flex rounded-2xl border border-white/10 bg-white/6 p-3">
-                    <Icon className="h-5 w-5 text-white" />
+                <div key={item.title} className="rounded-[28px] border border-white/10 bg-white/4 p-6 backdrop-blur-xl">
+                  <div className="mb-5 inline-flex rounded-2xl border border-cyan-300/20 bg-cyan-300/8 p-3">
+                    <Icon className="h-5 w-5 text-cyan-100" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-white">{profile.name}</h3>
-                  <p className="mt-3 leading-7 text-white/62">{profile.description}</p>
+                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-white/62">{item.body}</p>
                 </div>
               );
             })}
           </div>
         </section>
 
+        <section id="positioning" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="rounded-[34px] border border-white/10 bg-linear-to-br from-cyan-400/10 via-white/3 to-emerald-400/8 p-10 backdrop-blur-2xl">
+            <SectionTitle
+              eyebrow="Positioning"
+              title="Not another agent launcher"
+              body="Most tools focus on starting more agents. Garda focuses on making agent work reviewable, repeatable, and harder to mark as done too early."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {[
+                "Use your existing coding agent.",
+                "Force the same workflow across providers.",
+                "Accept completion only when the gates pass.",
+              ].map((item) => (
+                <div key={item} className="rounded-3xl border border-white/10 bg-black/20 p-6 text-lg font-medium leading-7 text-white/78">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="workflow" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <SectionTitle
             eyebrow="Workflow"
-            title="One universal workflow for every agent"
-            body="GARDA does not replace your coding agent. It gives every agent the same controlled path to done."
+            title="One repeatable workflow for every provider"
+            body="Garda does not replace your coding agent. It gives every provider the same governed path from task entry to auditable completion."
           />
           <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {workflowSteps.map((step) => {
               const Icon = step.icon;
               return (
-                <div key={step.title} className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+                <div key={step.title} className="rounded-[28px] border border-white/10 bg-white/4 p-6 backdrop-blur-xl">
                   <div className="mb-5 inline-flex rounded-2xl border border-cyan-300/20 bg-cyan-300/8 p-3">
                     <Icon className="h-5 w-5 text-cyan-100" />
                   </div>
@@ -960,11 +1038,33 @@ export default function GardaLandingPage() {
           </div>
         </section>
 
+        <section id="profiles" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <SectionTitle
+            eyebrow="Profiles"
+            title="Choose strictness by task risk"
+            body="Profiles keep small changes lightweight and push riskier work through a deeper review path."
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {profiles.map((profile) => {
+              const Icon = profile.icon;
+              return (
+                <div key={profile.name} className={`rounded-[28px] border border-white/10 bg-linear-to-b ${profile.accent} p-6 backdrop-blur-xl`}>
+                  <div className="mb-5 inline-flex rounded-2xl border border-white/10 bg-white/6 p-3">
+                    <Icon className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white">{profile.name}</h3>
+                  <p className="mt-3 leading-7 text-white/62">{profile.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
         <section id="docs" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <SectionTitle
             eyebrow="Docs"
-            title="Use the real docs from the project, not a marketing summary"
-            body="The repository already has the important pieces: setup, CLI reference, architecture, workflow examples, and the agent init prompt."
+            title="Go from demo to a real governed task"
+            body="Read the setup guide, CLI reference, architecture notes, and workflow example directly from the repository."
           />
           <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {docCards.map((card) => (
@@ -972,8 +1072,8 @@ export default function GardaLandingPage() {
                 key={card.title}
                 href={card.href}
                 target="_blank"
-                rel="noreferrer"
-                className="group rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl transition hover:border-cyan-300/25 hover:bg-white/[0.06]"
+                rel="noopener noreferrer"
+                className="group rounded-[28px] border border-white/10 bg-white/4 p-6 backdrop-blur-xl transition hover:border-cyan-300/25 hover:bg-white/6"
               >
                 <div className="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/5 p-3">
                   <TerminalSquare className="h-5 w-5 text-white/90" />
@@ -989,76 +1089,18 @@ export default function GardaLandingPage() {
           </div>
         </section>
 
-        <section id="versions" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <SectionTitle
-            eyebrow="Versions"
-            title="Release notes on the landing page, not buried in the repo"
-            body="Start with the current public baseline. For now that means `v1.0.0`, with the full change log available in GitHub."
-          />
-          <div className="mt-14 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
-            {releases.map((release) => (
-              <div key={release.version} className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100">
-                    v{release.version}
-                  </div>
-                  <div className="text-sm uppercase tracking-[0.24em] text-white/42">Current public baseline</div>
-                </div>
-                <h3 className="mt-6 text-3xl font-semibold text-white">{release.title}</h3>
-                <p className="mt-4 max-w-3xl text-base leading-7 text-white/62">{release.summary}</p>
-                <div className="mt-8 grid gap-3">
-                  {release.notes.map((note) => (
-                    <div key={note} className="flex items-start gap-3 rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/70">
-                      <div className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-300" />
-                      <div>{note}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-
-            <div className="grid gap-6">
-              <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
-                <div className="mb-3 text-sm uppercase tracking-[0.28em] text-cyan-200/72">Changelog</div>
-                <h3 className="text-2xl font-semibold text-white">Need the full release history?</h3>
-                <p className="mt-4 leading-7 text-white/62">
-                  The repository already carries the canonical `CHANGELOG.md`. The landing page should stay brief, while GitHub keeps the full source of truth.
-                </p>
-                <a
-                  href={CHANGELOG_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 transition hover:bg-cyan-300/15"
-                >
-                  Open full changelog
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-
-              <Window title="current release">
-                <div className="space-y-2 px-5 py-5 font-mono text-[14px] leading-6 text-white/82 md:text-[15px]">
-                  <div>Version: 1.0.0</div>
-                  <div>Status: first public release</div>
-                  <div>Line: Garda public release series</div>
-                  <div>Baseline: runtime + gates + bridges + audit trail</div>
-                </div>
-              </Window>
-            </div>
-          </div>
-        </section>
-
         <section id="start" className="mx-auto max-w-7xl scroll-mt-28 px-6 py-20 lg:px-10">
           <SectionTitle
             eyebrow="Get Started"
-            title="Use the actual onboarding flow from the repository"
-            body="The canonical path is simple: install the package, run `garda setup`, then feed `AGENT_INIT_PROMPT.md` to the agent so it can complete the hard `garda agent-init` gate."
+            title="Run your first governed agent workflow"
+            body="Install Garda, run setup, then hand `AGENT_INIT_PROMPT.md` to your coding agent so it can initialize the managed workflow."
           />
           <div className="mt-14 grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
             <div className="grid gap-4">
               {startSteps.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <div key={step.title} className="flex items-start gap-4 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+                  <div key={step.title} className="flex items-start gap-4 rounded-[28px] border border-white/10 bg-white/4 p-6 backdrop-blur-xl">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100">
                       0{index + 1}
                     </div>
@@ -1074,32 +1116,34 @@ export default function GardaLandingPage() {
               })}
             </div>
 
-            <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
+            <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">First controlled run</div>
                   <p className="mt-2 max-w-lg text-sm leading-6 text-white/50">
-                    This is the real quick-start shape from the project docs, not a made-up marketing flow.
+                    Install once, initialize the workspace, then let your agent enter the governed workflow.
                   </p>
                 </div>
                 <div className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs uppercase tracking-[0.22em] text-emerald-100">
-                  Official flow
+                  Local CLI
                 </div>
               </div>
-              <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#08121a]/85">
+              <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#08121a]/85">
                 <div className="border-b border-white/10 px-5 py-3 text-[10px] uppercase tracking-[0.28em] text-white/32">terminal</div>
                 <div className="space-y-2 px-5 py-5 font-mono text-[15px] text-white/80">
-                  <div>npm install -g garda-agent-orchestrator</div>
-                  <div>garda setup</div>
+                  {INSTALL_COMMAND.split("\n").map((line) => (
+                    <div key={line}>{line}</div>
+                  ))}
                   <div># give AGENT_INIT_PROMPT.md to your coding agent</div>
                   <div># the agent completes garda agent-init</div>
                 </div>
               </div>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <CopyButton value={INSTALL_COMMAND} />
                 <a
                   href={AGENT_INIT_PROMPT_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 transition hover:bg-cyan-300/15"
                 >
                   Open AGENT_INIT_PROMPT
@@ -1108,7 +1152,7 @@ export default function GardaLandingPage() {
                 <a
                   href={CLI_REFERENCE_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
                 >
                   View CLI reference
@@ -1119,27 +1163,98 @@ export default function GardaLandingPage() {
           </div>
         </section>
 
+        <section id="security" className="mx-auto max-w-7xl scroll-mt-28 px-6 py-20 lg:px-10">
+          <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
+            <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
+              <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">Current release</div>
+              <div className="mt-3 text-2xl font-semibold text-white">v1.0.0 public baseline</div>
+              <p className="mt-3 leading-7 text-white/62">
+                Runtime, gates, provider bridges, profiles, cleanup flows, and audit trail are available in the first public release line.
+              </p>
+              <a
+                href={CHANGELOG_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 transition hover:bg-cyan-300/15"
+              >
+                Open changelog
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="rounded-[30px] border border-emerald-400/15 bg-emerald-400/6 p-8 backdrop-blur-xl">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="text-sm uppercase tracking-[0.28em] text-emerald-200/72">Security</div>
+                  <div className="mt-3 text-2xl font-semibold text-white">Socket package report</div>
+                  <p className="mt-3 max-w-xl leading-7 text-white/62">
+                    Inspect the live Socket report for `garda-agent-orchestrator`. The published CLI uses Node.js 24+ as the support baseline, remains compatible with Node 20 and 22, is built from TypeScript source, and lists no runtime npm dependencies in `package.json`.
+                  </p>
+                </div>
+                <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-emerald-100/80" />
+              </div>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href={NPM_PACKAGE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                >
+                  View on npm
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href={SOCKET_PACKAGE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-3 py-2 text-sm font-medium text-emerald-50 transition hover:bg-emerald-300/15"
+                >
+                  <ShieldCheck className="h-4 w-4" />
+                  <img
+                    src={SOCKET_BADGE_URL}
+                    alt="Socket security badge for garda-agent-orchestrator"
+                    loading="lazy"
+                    className="h-5 w-auto"
+                  />
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {[
+                  "Runtime baseline: Node.js 24+ (compatible with 20 and 22)",
+                  "Source and build: TypeScript",
+                  "Runtime npm dependencies: none listed",
+                ].map((item) => (
+                  <div key={item} className="rounded-[18px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/70">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-10">
-          <div className="rounded-[34px] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-emerald-400/8 p-10 backdrop-blur-2xl">
+          <div className="rounded-[34px] border border-white/10 bg-linear-to-br from-cyan-400/10 via-white/3 to-emerald-400/8 p-10 backdrop-blur-2xl">
             <SectionTitle
               eyebrow="Ready"
-              title="Open the real project, then run the real onboarding"
-              body="The next step should not be another abstract demo. It should be the repository, the setup guide, and one correct first run."
+              title="Use your existing agent, but make the workflow governed"
+              body="Start with the repository, the setup guide, and one correct first run. Garda handles the workflow discipline on top of the agent you already use."
             />
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href={GITHUB_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-50 transition hover:bg-cyan-300/15"
               >
-                Open GitHub
+                View on GitHub
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href={USER_GUIDE_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
               >
                 Read setup guide
