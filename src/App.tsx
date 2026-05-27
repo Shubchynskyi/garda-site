@@ -192,16 +192,16 @@ const docCards = [
 
 const heroHighlights = [
   {
-    title: "Govern existing agents",
-    body: "Use Claude, Codex, Copilot, Cursor, Gemini and others without letting each one invent its own workflow.",
+    title: "Govern many agents",
+    body: "Use Claude, Codex, Copilot, Cursor, Gemini and other provider surfaces without letting each one invent its own workflow.",
   },
   {
-    title: "Force quality gates",
-    body: "Preflight, compile, required reviews, doc-impact, and completion run in a predictable order.",
+    title: "Follow next-step",
+    body: "`garda next-step` shows the exact next command so agents stay inside the same task loop.",
   },
   {
-    title: "Leave an audit trail",
-    body: "Review artifacts, gate summaries, and task-event history make completion inspectable.",
+    title: "Inspect the run",
+    body: "`garda ui` opens a local dashboard, while `garda html` writes a static report you can share or archive.",
   },
 ];
 
@@ -564,10 +564,10 @@ function DemoScene({ kind }: { kind: SceneKind }) {
             sceneKey={kind}
             lines={[
               { at: 120, text: '$ task: "Execute T-001 from TASK.md strictly through all mandatory orchestrator gates."' },
-              { at: 520, text: "> preflight: balanced, reviews=code+security" },
-              { at: 920, text: "> compile gate: npm test && npm run build", tone: "muted" },
-              { at: 1320, text: "> required reviews: passed", tone: "good" },
-              { at: 1720, text: "> doc-impact gate: no changes required", tone: "good" },
+              { at: 520, text: "> next-step: classify the task scope" },
+              { at: 920, text: "> preflight: balanced, reviews=code+security" },
+              { at: 1320, text: "> compile gate: passed", tone: "good" },
+              { at: 1720, text: "> required reviews: passed", tone: "good" },
               { at: 2120, text: "> completion gate: ready", tone: "good" },
             ]}
           />
@@ -826,15 +826,13 @@ export default function GardaLandingPage() {
                 {heroHighlights.map((point, index) => (
                   <div
                     key={point.title}
-                    className="grid h-full gap-4 rounded-3xl border border-white/10 bg-white/4 p-5 backdrop-blur-xl"
+                    className="grid h-full grid-rows-[2.75rem_auto_1fr] gap-3 rounded-3xl border border-white/10 bg-white/4 p-5 backdrop-blur-xl lg:grid-rows-[2.75rem_2.75rem_1fr]"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100">
                       0{index + 1}
                     </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-white lg:min-h-14">{point.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-white/62">{point.body}</p>
-                    </div>
+                    <h3 className="text-base font-semibold leading-6 text-white">{point.title}</h3>
+                    <p className="text-sm leading-6 text-white/62">{point.body}</p>
                   </div>
                 ))}
               </div>
@@ -863,10 +861,10 @@ export default function GardaLandingPage() {
                 </ScrollButton>
               </div>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-white/44">
-                Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
+                Version 1.1.0. Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
               </p>
               <div className="mt-8 flex flex-wrap gap-2 text-sm text-white/62">
-                <Badge icon={Workflow} text="8 coding agents" />
+                <Badge icon={Workflow} text="Many provider surfaces" />
                 <Badge icon={ShieldCheck} text="Mandatory gates" />
                 <Badge icon={CheckCircle2} text="Auditable completion" />
               </div>
@@ -878,9 +876,10 @@ export default function GardaLandingPage() {
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   {[
                     "Local governance layer for existing coding agents",
+                    "Requires a local Git working tree so task scope and review freshness can be audited",
                     "Mandatory gates: preflight, compile, reviews, doc-impact, completion",
-                    "Works with Claude, Codex, Copilot, Cursor, Gemini, Qwen, Windsurf, Junie, and Antigravity. Best in CLI mode.",
-                    "Artifacts: review outputs, gate summaries, and task-event history",
+                    "Works across many provider surfaces including Claude, Codex, Copilot, Cursor, Gemini, Qwen, Windsurf, Junie, and Antigravity. Best in CLI mode.",
+                    "Operator surfaces: `garda next-step`, `garda ui`, and `garda html`",
                   ].map((item) => (
                     <div key={item} className="rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/68">
                       {item}
@@ -895,7 +894,7 @@ export default function GardaLandingPage() {
                     <div key={line}>{line}</div>
                   ))}
                   <div># give AGENT_INIT_PROMPT.md to your coding agent</div>
-                  <div># the agent completes garda agent-init</div>
+                  <div># then use garda next-step for each task loop</div>
                 </div>
               </Window>
 
@@ -1093,7 +1092,7 @@ export default function GardaLandingPage() {
           <SectionTitle
             eyebrow="Get Started"
             title="Run your first governed agent workflow"
-            body="Install Garda, run setup, then hand `AGENT_INIT_PROMPT.md` to your coding agent so it can initialize the managed workflow."
+            body="Install Garda, run setup in a local Git working tree, then hand `AGENT_INIT_PROMPT.md` to your coding agent so it can initialize the managed workflow."
           />
           <div className="mt-14 grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
             <div className="grid gap-4">
@@ -1135,7 +1134,7 @@ export default function GardaLandingPage() {
                     <div key={line}>{line}</div>
                   ))}
                   <div># give AGENT_INIT_PROMPT.md to your coding agent</div>
-                  <div># the agent completes garda agent-init</div>
+                  <div># use garda next-step before and after every task gate</div>
                 </div>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -1167,9 +1166,9 @@ export default function GardaLandingPage() {
           <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
             <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
               <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">Current release</div>
-              <div className="mt-3 text-2xl font-semibold text-white">v1.0.0 public baseline</div>
+              <div className="mt-3 text-2xl font-semibold text-white">v1.1.0 release line</div>
               <p className="mt-3 leading-7 text-white/62">
-                Runtime, gates, provider bridges, profiles, cleanup flows, and audit trail are available in the first public release line.
+                Garda 1.1.0 focuses on clearer setup/update output, `next-step` routing, local UI/report surfaces, project memory, review reuse, runtime cleanup, and release validation.
               </p>
               <a
                 href={CHANGELOG_URL}
@@ -1188,7 +1187,7 @@ export default function GardaLandingPage() {
                   <div className="text-sm uppercase tracking-[0.28em] text-emerald-200/72">Security</div>
                   <div className="mt-3 text-2xl font-semibold text-white">Socket package report</div>
                   <p className="mt-3 max-w-xl leading-7 text-white/62">
-                    Inspect the live Socket report for `garda-agent-orchestrator`. The published CLI uses Node.js 24+ as the support baseline, remains compatible with Node 20 and 22, is built from TypeScript source, and lists no runtime npm dependencies in `package.json`.
+                    Inspect the live Socket report for `garda-agent-orchestrator`. The CLI targets Node.js 24 LTS as the primary runtime and supports Node.js 22.13+ as the compatibility line. Garda is local workflow governance, not a sandbox against a malicious same-user process.
                   </p>
                 </div>
                 <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-emerald-100/80" />
@@ -1221,9 +1220,9 @@ export default function GardaLandingPage() {
               </div>
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
                 {[
-                  "Runtime baseline: Node.js 24+ (compatible with 20 and 22)",
-                  "Source and build: TypeScript",
-                  "Runtime npm dependencies: none listed",
+                  "Runtime baseline: Node.js 24 LTS primary",
+                  "Compatibility line: Node.js 22.13+",
+                  "Node 20 is outside the tested support matrix",
                 ].map((item) => (
                   <div key={item} className="rounded-[18px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/70">
                     {item}
