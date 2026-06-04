@@ -1,0 +1,20 @@
+export const GITHUB_URL = "https://github.com/Shubchynskyi/garda-agent-orchestrator";
+export const DOC_BRANCH = "master";
+export const repoFile = (path: string) => `${GITHUB_URL}/blob/${DOC_BRANCH}/${path}`;
+
+export const USER_GUIDE_URL = repoFile("HOW_TO.md");
+export const CLI_REFERENCE_URL = repoFile("docs/cli-reference.md");
+export const ARCHITECTURE_URL = repoFile("docs/architecture.md");
+export const WORK_EXAMPLE_URL = repoFile("docs/work-example.md");
+export const CONFIGURATION_URL = repoFile("docs/configuration.md");
+export const PROVIDERS_URL = repoFile("docs/providers.md");
+export const PROVIDER_MATRIX_URL = repoFile("docs/compatibility-matrix.md");
+export const THREAT_MODEL_URL = repoFile("docs/threat-model.md");
+export const CONTROL_PLANE_ISOLATION_URL = repoFile("docs/control-plane-isolation.md");
+export const RELEASE_READINESS_URL = repoFile("docs/release-readiness.md");
+export const AGENT_INIT_PROMPT_URL = repoFile("AGENT_INIT_PROMPT.md");
+export const CHANGELOG_URL = repoFile("CHANGELOG.md");
+export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/garda-agent-orchestrator";
+export const SOCKET_PACKAGE_URL = "https://socket.dev/npm/package/garda-agent-orchestrator";
+export const SOCKET_BADGE_URL = "https://socket.dev/api/badge/npm/package/garda-agent-orchestrator";
+export const INSTALL_COMMAND = "npm install -g garda-agent-orchestrator\ngarda setup";

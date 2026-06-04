@@ -11,8 +11,11 @@ vite.err
 *.pid
 logs/
 run/
+scripts/
+!scripts/
+scripts/*
+!scripts/validate-content.mjs
 
 .DS_Store
 Thumbs.db
 *.local
-scripts/
