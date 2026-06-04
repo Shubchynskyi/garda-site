@@ -105,7 +105,7 @@ export const workflowSteps: WorkflowStep[] = [
 export const heroHighlights = [
   {
     title: "Govern many agents",
-    body: "Use documented provider entrypoints and bridge profiles without letting each agent surface invent its own workflow.",
+    body: "Use popular providers and local provider surfaces without letting each agent invent its own workflow.",
   },
   {
     title: "Follow next-step",

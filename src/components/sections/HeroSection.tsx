@@ -18,7 +18,7 @@ export function HeroSection() {
             Make AI coding agents follow the same gates every time.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/62">
-            Garda is a local governance layer for multiple AI coding agent provider surfaces, including shared AGENTS.md providers such as Codex, Cursor, and DeepSeek. It works best in CLI mode, where it routes task work through task mode, preflight, compile checks, required reviews, doc-impact checks, and completion gates before the work is treated as done.
+            Garda is a local governance layer for many popular AI coding agent providers and local provider surfaces. It covers providers such as Claude, Codex, and Antigravity 2.0 / CLI, with one key requirement for mandatory review: the active surface must be able to delegate fresh sub-agent reviewers.
           </p>
           <div className="mt-10 grid gap-3 lg:grid-cols-3">
             {heroHighlights.map((point, index) => (
@@ -76,8 +76,8 @@ export function HeroSection() {
                 "Local governance layer for existing coding agents",
                 "Requires a local Git working tree so task scope and review freshness can be audited",
                 "Mandatory gates: preflight, compile, reviews, doc-impact, completion",
-                "Supports multiple documented provider surfaces with provider-specific entrypoints and bridge profiles.",
-                "Codex, Cursor, and DeepSeek share the AGENTS.md compatibility path; Antigravity can run the task workflow but does not currently satisfy independent review delegation by itself.",
+                "Supports many popular providers and local provider surfaces with provider-specific entrypoints and bridge profiles.",
+                "Claude, Codex, and Antigravity 2.0 / CLI are first-viewport examples; mandatory review relies on fresh sub-agent reviewer delegation.",
                 "Operator surfaces: `garda next-step`, `garda preprompt`, `garda ui`, `garda html`, `garda cleanup`, `garda repair`, and `garda rollback`",
               ].map((item) => (
                 <div key={item} className="rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/68">

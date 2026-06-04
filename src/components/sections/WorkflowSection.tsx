@@ -1,3 +1,5 @@
+import { ArrowRight } from "lucide-react";
+import { ARCHITECTURE_URL, WORK_EXAMPLE_URL } from "../../content/links";
 import { workflowSteps } from "../../content/landing";
 import { SectionTitle } from "../ui/SectionTitle";
 
@@ -22,6 +24,17 @@ export function WorkflowSection() {
             </div>
           );
         })}
+      </div>
+      <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[24px] border border-white/10 bg-white/4 px-5 py-4 text-sm leading-6 text-white/62 backdrop-blur-xl">
+        <span>The full gate chain is documented in the architecture notes and workflow example.</span>
+        <a href={ARCHITECTURE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-cyan-100 transition hover:text-white">
+          Architecture
+          <ArrowRight className="h-3.5 w-3.5" />
+        </a>
+        <a href={WORK_EXAMPLE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-cyan-100 transition hover:text-white">
+          Work Example
+          <ArrowRight className="h-3.5 w-3.5" />
+        </a>
       </div>
     </section>
   );
