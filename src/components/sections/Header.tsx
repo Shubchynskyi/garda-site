@@ -23,6 +23,7 @@ export function Header() {
             <ScrollButton targetId="docs" className="bg-transparent hover:text-white">Docs</ScrollButton>
             <ScrollButton targetId="start" className="bg-transparent hover:text-white">Install</ScrollButton>
             <ScrollButton targetId="security" className="bg-transparent hover:text-white">Security</ScrollButton>
+            <ScrollButton targetId="support" className="bg-transparent hover:text-white">Support</ScrollButton>
             <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
           </nav>
         </div>
@@ -33,6 +34,7 @@ export function Header() {
           <ScrollButton targetId="docs" className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-2 hover:text-white">Docs</ScrollButton>
           <ScrollButton targetId="start" className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-2 hover:text-white">Install</ScrollButton>
           <ScrollButton targetId="security" className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-2 hover:text-white">Security</ScrollButton>
+          <ScrollButton targetId="support" className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-2 hover:text-white">Support</ScrollButton>
           <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-cyan-50">GitHub</a>
         </nav>
       </div>

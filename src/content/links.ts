@@ -17,4 +17,6 @@ export const CHANGELOG_URL = repoFile("CHANGELOG.md");
 export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/garda-agent-orchestrator";
 export const SOCKET_PACKAGE_URL = "https://socket.dev/npm/package/garda-agent-orchestrator";
 export const SOCKET_BADGE_URL = "https://socket.dev/api/badge/npm/package/garda-agent-orchestrator";
+export const KO_FI_URL = "https://ko-fi.com/gardaworkflow";
+export const CRYPTO_DONATION_URL = "https://nowpayments.io/donation/garda";
 export const INSTALL_COMMAND = "npm install -g garda-agent-orchestrator\ngarda setup";

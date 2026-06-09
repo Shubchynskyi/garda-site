@@ -11,6 +11,8 @@ import { ProfilesSection } from "./components/sections/ProfilesSection";
 import { RuntimeLayerSection } from "./components/sections/RuntimeLayerSection";
 import { SecuritySection } from "./components/sections/SecuritySection";
 import { StartSection } from "./components/sections/StartSection";
+import { SupportFooter } from "./components/sections/SupportFooter";
+import { SupportSection } from "./components/sections/SupportSection";
 import { WorkflowSection } from "./components/sections/WorkflowSection";
 import { InstallShortcut } from "./components/ui/InstallShortcut";
 
@@ -49,8 +51,10 @@ export default function GardaLandingPage() {
         <CliSurfaceSection />
         <StartSection />
         <SecuritySection />
+        <SupportSection />
         <FinalCtaSection />
       </main>
+      <SupportFooter />
       <InstallShortcut />
     </div>
   );
