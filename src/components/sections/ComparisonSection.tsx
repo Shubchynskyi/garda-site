@@ -1,4 +1,5 @@
-import { comparison } from "../../content/landing";
+import { CheckCircle2 } from "lucide-react";
+import { comparison, whyGardaPoints } from "../../content/landing";
 import { SectionTitle } from "../ui/SectionTitle";
 
 export function ComparisonSection() {
@@ -32,6 +33,17 @@ export function ComparisonSection() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-10 rounded-[30px] border border-cyan-300/20 bg-cyan-300/6 p-8 backdrop-blur-xl">
+        <div className="text-sm font-medium uppercase tracking-[0.28em] text-cyan-200/90">Why GARDA?</div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {whyGardaPoints.map((point) => (
+            <div key={point} className="flex items-start gap-3 rounded-3xl border border-white/10 bg-black/20 p-4 text-sm leading-7 text-white/78">
+              <CheckCircle2 className="mt-1 h-4 w-4 flex-none text-cyan-200/95" />
+              <p>{point}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

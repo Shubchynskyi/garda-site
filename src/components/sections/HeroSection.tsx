@@ -18,7 +18,7 @@ export function HeroSection() {
             Make AI coding agents follow the same gates every time.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/62">
-            Garda is a local governance layer for many popular AI coding agent providers and local provider surfaces. It covers providers such as Claude, Codex, and Antigravity 2.0 / CLI, with one key requirement for mandatory review: the active surface must be able to delegate fresh sub-agent reviewers.
+            GARDA is an open-source, local-first governance runtime for AI coding workflows. It turns AI agent work into auditable tasks with mandatory gates, review evidence, doc-impact checks, and controlled completion.
           </p>
           <div className="mt-10 grid gap-3 lg:grid-cols-3">
             {heroHighlights.map((point, index) => (

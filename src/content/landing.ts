@@ -117,6 +117,14 @@ export const heroHighlights = [
   },
 ];
 
+export const whyGardaPoints = [
+  "Open-source and local-first",
+  "No vendor lock-in",
+  "Works across AI coding tools",
+  "Enforces task lifecycle and completion gates",
+  "Produces reviewable evidence, not just chat history",
+];
+
 export const startSteps: WorkflowStep[] = [
   {
     title: "Install Garda",

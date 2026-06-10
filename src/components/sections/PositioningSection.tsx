@@ -6,8 +6,8 @@ export function PositioningSection() {
       <div className="rounded-[34px] border border-white/10 bg-linear-to-br from-cyan-400/10 via-white/3 to-emerald-400/8 p-10 backdrop-blur-2xl">
         <SectionTitle
           eyebrow="Positioning"
-          title="Not another agent launcher"
-          body="Most tools focus on starting more agents. Garda focuses on making agent work reviewable, repeatable, and harder to mark as done too early."
+          title="Open-source, local-first governance"
+          body="GARDA is an open-source, local-first governance runtime for AI coding workflows. It turns AI agent work into auditable tasks with mandatory gates, review evidence, doc-impact checks, and controlled completion."
         />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[

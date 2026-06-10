@@ -41,7 +41,7 @@ export function StartSection() {
                 Install once, initialize the workspace, then let your agent enter the governed workflow.
               </p>
             </div>
-            <div className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs uppercase tracking-[0.22em] text-emerald-100">
+            <div className="whitespace-nowrap rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs uppercase tracking-[0.22em] text-emerald-100">
               Local CLI
             </div>
           </div>
