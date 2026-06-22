@@ -80,7 +80,11 @@ export function SecuritySection() {
                 alt="Socket security badge for garda-agent-orchestrator"
                 loading="lazy"
                 className="h-5 w-auto"
+                onError={(event) => {
+                  event.currentTarget.hidden = true;
+                }}
               />
+              <span>Socket report</span>
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
