@@ -115,6 +115,10 @@ export const heroHighlights = [
     title: "Inspect the run",
     body: "`garda ui` opens a local dashboard, while `garda html` writes a static report you can share or archive.",
   },
+  {
+    title: "Tune quality gates",
+    body: "Use configurable quality rules and optional checklist passes before review when a task needs deeper scrutiny.",
+  },
 ];
 
 export const whyGardaPoints = [

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const expectedVersion = "1.1.0";
+const expectedVersion = "1.2.0";
 
 function readText(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -54,7 +54,12 @@ if (packageLock.packages?.[""]?.version !== expectedVersion) {
 }
 
 const requiredVisible = [
-  "Version 1.1.0",
+  "Version 1.2.0",
+  "quality checklist gate",
+  "configurable quality rules",
+  "specialist-skill modes",
+  "npm Trusted Publishing",
+  "npm stage publish",
   "Claude",
   "Codex",
   "Antigravity 2.0 / CLI",

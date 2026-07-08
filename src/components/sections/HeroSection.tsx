@@ -1,6 +1,6 @@
 import { ArrowRight, CheckCircle2, ChevronRight, ShieldCheck, Sparkles, Workflow } from "lucide-react";
 import { heroHighlights } from "../../content/landing";
-import { GITHUB_URL, INSTALL_COMMAND } from "../../content/links";
+import { CHANGELOG_URL, GITHUB_URL, INSTALL_COMMAND } from "../../content/links";
 import { Badge } from "../ui/Badge";
 import { ScrollButton } from "../ui/ScrollButton";
 import { Window } from "../ui/Window";
@@ -8,6 +8,29 @@ import { Window } from "../ui/Window";
 export function HeroSection() {
   return (
     <section className="mx-auto max-w-7xl px-6 pb-14 pt-20 lg:px-10 lg:pt-24">
+      <a
+        href={CHANGELOG_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-8 flex flex-col gap-4 rounded-3xl border border-cyan-300/20 bg-cyan-300/8 px-5 py-4 text-left shadow-[0_0_60px_rgba(34,211,238,0.08)] backdrop-blur-xl transition hover:border-cyan-300/35 hover:bg-cyan-300/12 md:flex-row md:items-center md:justify-between"
+      >
+        <div className="flex min-w-0 items-start gap-3">
+          <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/12">
+            <Sparkles className="h-4 w-4 text-cyan-100" />
+          </div>
+          <div className="min-w-0">
+            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-100/80">New release</div>
+            <div className="mt-1 text-xl font-semibold leading-7 text-white">Garda 1.2.0 is now available</div>
+            <div className="mt-1 text-sm leading-6 text-white/62">
+              Quality checklist gate, configurable quality rules, smarter review reuse, and cleaner local controls.
+            </div>
+          </div>
+        </div>
+        <div className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-medium text-cyan-50">
+          Read changelog
+          <ArrowRight className="h-4 w-4" />
+        </div>
+      </a>
       <div className="grid items-start gap-10 lg:grid-cols-[1.08fr_0.92fr]">
         <div>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 backdrop-blur-xl">
@@ -20,7 +43,7 @@ export function HeroSection() {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/62">
             GARDA is an open-source, local-first governance runtime for AI coding workflows. It turns AI agent work into auditable tasks with mandatory gates, review evidence, doc-impact checks, and controlled completion.
           </p>
-          <div className="mt-10 grid gap-3 lg:grid-cols-3">
+          <div className="mt-10 grid gap-3 md:grid-cols-2">
             {heroHighlights.map((point, index) => (
               <div
                 key={point.title}
@@ -59,7 +82,7 @@ export function HeroSection() {
             </ScrollButton>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/44">
-            Version 1.1.0. Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
+            Version 1.2.0. Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
           </p>
           <div className="mt-8 flex flex-wrap gap-2 text-sm text-white/62">
             <Badge icon={Workflow} text="Many provider surfaces" />
@@ -76,8 +99,8 @@ export function HeroSection() {
                 "Local governance layer for existing coding agents",
                 "Requires a local Git working tree so task scope and review freshness can be audited",
                 "Mandatory gates: preflight, compile, reviews, doc-impact, completion",
-                "Supports many popular providers and local provider surfaces with provider-specific entrypoints and bridge profiles.",
-                "Claude, Codex, and Antigravity 2.0 / CLI are first-viewport examples; mandatory review relies on fresh sub-agent reviewer delegation.",
+                "Supports many popular AI coding agent providers and local provider surfaces with provider-specific entrypoints and bridge profiles.",
+                "Claude, Codex, and Antigravity 2.0 / CLI are first-viewport examples; mandatory review relies on fresh sub-agent reviewers.",
                 "Operator surfaces: `garda next-step`, `garda preprompt`, `garda ui`, `garda html`, `garda cleanup`, `garda repair`, and `garda rollback`",
               ].map((item) => (
                 <div key={item} className="rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/68">

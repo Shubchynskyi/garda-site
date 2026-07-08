@@ -14,9 +14,9 @@ export function SecuritySection() {
       <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
         <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
           <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">Current release</div>
-          <div className="mt-3 text-2xl font-semibold text-white">v1.1.0 release line</div>
+          <div className="mt-3 text-2xl font-semibold text-white">v1.2.0 release line</div>
           <p className="mt-3 leading-7 text-white/62">
-            Garda 1.1.0 focuses on clearer setup/update output, `next-step` routing, local UI/report surfaces, project memory, review reuse, runtime cleanup, and release validation.
+            Garda 1.2.0 adds the optional quality checklist gate, configurable quality rules in `garda ui --actions`, improved `next-step` routing, stricter review reuse, normalized specialist-skill modes, and npm Trusted Publishing through `npm stage publish`.
           </p>
           <a
             href={CHANGELOG_URL}
