@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { CliSurfaceSection } from "./components/sections/CliSurfaceSection";
 import { ComparisonSection } from "./components/sections/ComparisonSection";
@@ -15,9 +16,25 @@ import { SupportFooter } from "./components/sections/SupportFooter";
 import { SupportSection } from "./components/sections/SupportSection";
 import { WorkflowSection } from "./components/sections/WorkflowSection";
 import { InstallShortcut } from "./components/ui/InstallShortcut";
+import { scrollToCurrentHash } from "./lib/scroll";
 
 export default function GardaLandingPage() {
   const prefersReducedMotion = useReducedMotion();
+
+  useLayoutEffect(() => {
+    const alignToHash = () => {
+      scrollToCurrentHash("auto");
+    };
+
+    alignToHash();
+    const frameId = window.requestAnimationFrame(alignToHash);
+
+    window.addEventListener("hashchange", alignToHash);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener("hashchange", alignToHash);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#04070d] text-white">
