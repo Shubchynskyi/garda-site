@@ -13,7 +13,7 @@ export const DEMO_SCENES = [
     label: "Workflow",
     theme: "with",
     title: "Garda moves one task through the same gates every time",
-    subtitle: "Preflight, compile, required reviews, and completion happen in order before anyone treats the output as done.",
+    subtitle: "Preflight, compile, fresh delegated reviews, findings receipts, and completion happen in order before anyone treats the output as done.",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const DEMO_SCENES = [
     label: "Proof",
     theme: "with",
     title: "Completion ends with artifacts another human can inspect",
-    subtitle: "Review outputs, gate summaries, and task-event history make the result auditable instead of hand-wavy.",
+    subtitle: "Coverage ledgers, findings receipts, gate summaries, and task-event history make the result auditable instead of hand-wavy.",
   },
 ] as const;
 

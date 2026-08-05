@@ -50,8 +50,9 @@ export function DemoScene({ kind }: { kind: SceneKind }) {
               { at: 760, text: "> next: run preflight/classify-change" },
               { at: 920, text: "> preflight: balanced, reviews=code+security" },
               { at: 1320, text: "> compile gate: passed", tone: "good" },
-              { at: 1720, text: "> required reviews: passed", tone: "good" },
-              { at: 2120, text: "> completion gate: ready", tone: "good" },
+              { at: 1680, text: "> review coverage: complete", tone: "good" },
+              { at: 2040, text: "> findings receipts: satisfied", tone: "good" },
+              { at: 2400, text: "> completion gate: ready", tone: "good" },
             ]}
           />
           <div className="grid gap-3 sm:grid-cols-2">
@@ -81,8 +82,8 @@ export function DemoScene({ kind }: { kind: SceneKind }) {
       <div className="grid gap-4">
         {[
           {
-            title: "Required reviews",
-            body: "Code and security review artifacts are attached before completion can pass.",
+            title: "Coverage ledgers",
+            body: "Code and security reviewers account for each assigned file, boundary, and category before their findings receipts can be satisfied.",
             icon: ShieldCheck,
           },
           {
@@ -119,8 +120,8 @@ export function DemoScene({ kind }: { kind: SceneKind }) {
             { at: 120, text: "TASK_ENTRY         ok", tone: "normal" as LineTone },
             { at: 480, text: "PREFLIGHT          passed", tone: "good" as LineTone },
             { at: 840, text: "COMPILE_GATE       passed", tone: "good" as LineTone },
-            { at: 1200, text: "SECURITY_REVIEW    approved", tone: "good" as LineTone },
-            { at: 1560, text: "REQUIRED_REVIEWS   passed", tone: "good" as LineTone },
+            { at: 1200, text: "REVIEW_COVERAGE    complete", tone: "good" as LineTone },
+            { at: 1560, text: "FINDINGS_RECEIPTS  satisfied", tone: "good" as LineTone },
             { at: 1920, text: "COMPLETION_GATE    ready", tone: "good" as LineTone },
           ].map((line, i) => {
             const shown = elapsed >= line.at;

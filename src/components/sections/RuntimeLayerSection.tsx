@@ -13,7 +13,7 @@ export function RuntimeLayerSection() {
         {[
           {
             title: "Runtime contract",
-            body: "A Node and TypeScript CLI controls setup, task mode, profiles, updates, cleanup, and validation.",
+            body: "A compiled Node and TypeScript CLI controls setup, task mode, profiles, updates, cleanup, and validation without shipping source or tests to consumers.",
             icon: TerminalSquare,
           },
           {
@@ -22,13 +22,13 @@ export function RuntimeLayerSection() {
             icon: ShieldCheck,
           },
           {
-            title: "Review artifacts",
-            body: "Specialist reviews leave inspectable outputs before a task can be treated as complete.",
+            title: "Coverage and findings",
+            body: "Fresh delegated reviewers return exhaustive coverage ledgers and findings that remain bound to the current task cycle.",
             icon: FileWarning,
           },
           {
-            title: "Audit trail",
-            body: "Task-event history records how work moved through the lifecycle.",
+            title: "Canonical evidence",
+            body: "Task-event history records the lifecycle; SQLite stays a disposable read projection and never authorizes trust-sensitive decisions.",
             icon: GitBranch,
           },
         ].map((item) => {

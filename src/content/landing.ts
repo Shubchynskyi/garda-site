@@ -46,8 +46,8 @@ export const comparison: ComparisonCard[] = [
     points: [
       "Every agent follows the same task workflow.",
       "Preflight classifies scope and risk before implementation.",
-      "Compile, required reviews, doc-impact, and completion run in order.",
-      "The task ends with review artifacts and tamper-evident history.",
+      "Fresh delegated reviews account for every assigned coverage obligation.",
+      "The task ends with findings receipts, gate evidence, and tamper-evident history.",
     ],
   },
 ];
@@ -92,7 +92,7 @@ export const workflowSteps: WorkflowStep[] = [
   },
   {
     title: "Run compile and reviews",
-    description: "Compile, specialist reviews, and doc-impact happen in a defined order.",
+    description: "Compile, fresh delegated reviews, findings receipts, and doc-impact happen in a defined order.",
     icon: Wrench,
   },
   {
@@ -109,15 +109,15 @@ export const heroHighlights = [
   },
   {
     title: "Follow next-step",
-    body: "`garda next-step` shows the exact next command so agents stay inside the same task loop.",
+    body: "`garda next-step` shows the exact next command and now avoids repeated workspace reads through bounded snapshots and caches.",
   },
   {
-    title: "Inspect the run",
-    body: "`garda ui` opens a local dashboard, while `garda html` writes a static report you can share or archive.",
+    title: "Prove review coverage",
+    body: "Cycle-bound delegated reviews use exhaustive coverage ledgers so every assigned file and behavior boundary is accounted for.",
   },
   {
-    title: "Tune quality gates",
-    body: "Use configurable quality rules and optional checklist passes before review when a task needs deeper scrutiny.",
+    title: "Scale local evidence",
+    body: "Canonical files remain authoritative while a disposable SQLite projection accelerates qualified bulk reads and project-memory search.",
   },
 ];
 
@@ -151,5 +151,5 @@ export const cliGroups = [
   { title: "Navigate", commands: ["garda next-step", "garda preprompt"] },
   { title: "Inspect", commands: ["garda status", "garda status why-blocked", "garda doctor", "garda doctor explain"] },
   { title: "Report", commands: ["garda html", "garda ui"] },
-  { title: "Maintain", commands: ["garda cleanup", "garda repair", "garda rollback"] },
+  { title: "Maintain", commands: ["garda check-update", "garda update", "garda cleanup", "garda repair", "garda rollback"] },
 ];

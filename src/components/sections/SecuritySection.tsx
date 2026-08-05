@@ -14,10 +14,22 @@ export function SecuritySection() {
       <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
         <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
           <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">Current release</div>
-          <div className="mt-3 text-2xl font-semibold text-white">v1.2.0 release line</div>
+          <div className="mt-3 text-2xl font-semibold text-white">v1.3.0 release line</div>
           <p className="mt-3 leading-7 text-white/62">
-            Garda 1.2.0 adds the optional quality checklist gate, configurable quality rules in `garda ui --actions`, improved `next-step` routing, stricter review reuse, normalized specialist-skill modes, and npm Trusted Publishing through `npm stage publish`.
+            Garda 1.3.0 strengthens review provenance from clean-context launch through findings receipt, speeds up ordinary navigation, introduces a canonical-first SQLite projection, and ships a smaller compiled-only npm package.
           </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {[
+              "Cycle-bound reviewer identities, immutable launch inputs, output hashes, and findings receipts",
+              "Exhaustive coverage ledgers for every assigned file, behavior boundary, and review category",
+              "Faster `next-step` routing with batched probes, bounded snapshots, and integrity-keyed caches",
+              "SQLite-accelerated qualified reads while canonical files remain authoritative",
+            ].map((item) => (
+              <div key={item} className="rounded-[18px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/70">
+                {item}
+              </div>
+            ))}
+          </div>
           <a
             href={CHANGELOG_URL}
             target="_blank"

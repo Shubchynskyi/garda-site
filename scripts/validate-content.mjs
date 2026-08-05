@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const expectedVersion = "1.2.0";
+const expectedVersion = "1.3.0";
 
 function readText(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -39,6 +39,8 @@ const fullCorpus = [
   ".nvmrc",
 ].map(readText).join("\n");
 
+const expectedSocialImage = "garda-og-preview-final-safe.jpg";
+
 const packageJson = readJson("package.json");
 const packageLock = readJson("package-lock.json");
 
@@ -52,14 +54,21 @@ if (packageLock.version !== expectedVersion) {
 if (packageLock.packages?.[""]?.version !== expectedVersion) {
   versionErrors.push(`package-lock root package version is ${packageLock.packages?.[""]?.version}, expected ${expectedVersion}`);
 }
+if (!readText("index.html").includes(expectedSocialImage)) {
+  versionErrors.push(`index.html does not reference ${expectedSocialImage}`);
+}
+if (!fs.existsSync(path.join(root, "public", expectedSocialImage))) {
+  versionErrors.push(`public/${expectedSocialImage} is missing`);
+}
 
 const requiredVisible = [
-  "Version 1.2.0",
-  "quality checklist gate",
-  "configurable quality rules",
-  "specialist-skill modes",
-  "npm Trusted Publishing",
-  "npm stage publish",
+  "Version 1.3.0",
+  "Cycle-bound review evidence",
+  "exhaustive coverage ledgers",
+  "findings receipts",
+  "canonical-first SQLite projection",
+  "compiled-only npm package",
+  "canonical files remain authoritative",
   "Claude",
   "Codex",
   "Antigravity 2.0 / CLI",
@@ -85,6 +94,10 @@ const requiredVisible = [
 ];
 
 const forbidden = [
+  "Garda 1.2.0",
+  "Version 1.2.0",
+  "v1.2.0 release line",
+  "SECURITY_REVIEW    approved",
   "force every task through",
   "how Garda forces the workflow",
   "does not currently satisfy independent review delegation",
