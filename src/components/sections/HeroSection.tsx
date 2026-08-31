@@ -20,9 +20,9 @@ export function HeroSection() {
           </div>
           <div className="min-w-0">
             <div className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-100/80">New release</div>
-            <div className="mt-1 text-xl font-semibold leading-7 text-white">Garda 1.3.0 is now available</div>
+            <div className="mt-1 text-xl font-semibold leading-7 text-white">Garda 1.4.1 is now available</div>
             <div className="mt-1 text-sm leading-6 text-white/62">
-              Cycle-bound review evidence, exhaustive coverage ledgers, faster navigation, a canonical-first SQLite projection, and a compiled-only npm package.
+              Guarded custom review lanes, profile-owned dependency graphs, authenticated REUSE/DELTA/FULL remediation, and compatibility-first migration.
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ export function HeroSection() {
             </ScrollButton>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/44">
-            Version 1.3.0. Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
+            Version 1.4.1. Gates, not vibes. Package: `garda-agent-orchestrator`. Commands: `garda`, `gao`, `garda-agent-orchestrator`.
           </p>
           <div className="mt-8 flex flex-wrap gap-2 text-sm text-white/62">
             <Badge icon={Workflow} text="Many provider surfaces" />

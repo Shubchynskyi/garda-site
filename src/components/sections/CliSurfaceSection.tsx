@@ -23,7 +23,16 @@ export function CliSurfaceSection() {
           </div>
         ))}
       </div>
-      <div className="mt-6 grid gap-6 md:grid-cols-2">
+      <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="rounded-[28px] border border-fuchsia-300/15 bg-fuchsia-300/6 p-6 backdrop-blur-xl">
+          <h3 className="text-xl font-semibold text-white">Review catalog</h3>
+          <p className="mt-3 leading-7 text-white/62">
+            Inspect built-in and custom lanes, profile bindings, and dependency order before changing review policy.
+          </p>
+          <div className="mt-4 rounded-[16px] border border-white/10 bg-black/20 px-4 py-3 font-mono text-sm text-white/72">
+            garda review-catalog validate --target-root "."
+          </div>
+        </div>
         <div className="rounded-[28px] border border-cyan-300/15 bg-cyan-300/6 p-6 backdrop-blur-xl">
           <h3 className="text-xl font-semibold text-white">Safe updates and rollback</h3>
           <p className="mt-3 leading-7 text-white/62">

@@ -14,7 +14,7 @@ export function DocsSection() {
             <span className="md:whitespace-nowrap">real governed task</span>
           </>
         }
-        body="Read the setup guide, CLI reference, architecture notes, provider matrix, threat model, and workflow examples directly from the repository."
+        body="Read the setup guide, review catalog and remediation design, CLI reference, provider matrix, threat model, and workflow examples directly from the repository."
       />
       <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {docCards.map((card) => (

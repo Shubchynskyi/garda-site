@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const expectedVersion = "1.3.0";
+const expectedVersion = "1.4.1";
 
 function readText(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -62,9 +62,14 @@ if (!fs.existsSync(path.join(root, "public", expectedSocialImage))) {
 }
 
 const requiredVisible = [
-  "Version 1.3.0",
-  "Cycle-bound review evidence",
-  "exhaustive coverage ledgers",
+  "Version 1.4.1",
+  "Guarded custom review lanes",
+  "profile-owned dependency graphs",
+  "authenticated `REUSE`, bounded `DELTA`, or conservative `FULL` review",
+  "Authenticated REUSE, DELTA, and FULL modes",
+  "garda review-catalog validate --target-root \".\"",
+  "garda review-catalog migrate --target-root \".\"",
+  "Existing workspaces remain compatible without migration",
   "findings receipts",
   "canonical-first SQLite projection",
   "compiled-only npm package",
@@ -94,6 +99,12 @@ const requiredVisible = [
 ];
 
 const forbidden = [
+  "Garda 1.4.0",
+  "Version 1.4.0",
+  "v1.4.0 release line",
+  "Garda 1.3.0",
+  "Version 1.3.0",
+  "v1.3.0 release line",
   "Garda 1.2.0",
   "Version 1.2.0",
   "v1.2.0 release line",

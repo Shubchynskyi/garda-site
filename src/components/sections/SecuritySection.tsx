@@ -14,21 +14,30 @@ export function SecuritySection() {
       <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
         <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
           <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">Current release</div>
-          <div className="mt-3 text-2xl font-semibold text-white">v1.3.0 release line</div>
+          <div className="mt-3 text-2xl font-semibold text-white">v1.4.1 release line</div>
           <p className="mt-3 leading-7 text-white/62">
-            Garda 1.3.0 strengthens review provenance from clean-context launch through findings receipt, speeds up ordinary navigation, introduces a canonical-first SQLite projection, and ships a smaller compiled-only npm package.
+            Garda 1.4.1 makes review policy extensible while keeping legacy workspaces conservative, then strengthens remediation and recovery around the frozen task cycle.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {[
-              "Cycle-bound reviewer identities, immutable launch inputs, output hashes, and findings receipts",
-              "Exhaustive coverage ledgers for every assigned file, behavior boundary, and review category",
-              "Faster `next-step` routing with batched probes, bounded snapshots, and integrity-keyed caches",
-              "SQLite-accelerated qualified reads while canonical files remain authoritative",
+              "Guarded built-in and custom review lanes with profile states and dependency graphs",
+              "Catalog and remediation policy snapshots stay frozen for each active task cycle",
+              "Authenticated REUSE, DELTA, and FULL modes with fail-closed fallback",
+              "Safer reviewer correction, launch recovery, lifecycle transactions, and TASK.md-preserving uninstall",
             ].map((item) => (
               <div key={item} className="rounded-[18px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-white/70">
                 {item}
               </div>
             ))}
+          </div>
+          <div className="mt-5 rounded-[18px] border border-cyan-300/15 bg-cyan-300/6 p-4">
+            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100/72">After updating</div>
+            <div className="mt-3 overflow-x-auto rounded-[14px] border border-white/10 bg-black/20 px-4 py-3 font-mono text-sm text-cyan-50">
+              garda review-catalog validate --target-root "."
+            </div>
+            <p className="mt-3 text-sm leading-6 text-white/62">
+              Existing workspaces remain compatible without migration. `garda review-catalog migrate --target-root "."` only previews an explicit normalized catalog on its first call.
+            </p>
           </div>
           <a
             href={CHANGELOG_URL}

@@ -13,7 +13,7 @@ export function RuntimeLayerSection() {
         {[
           {
             title: "Runtime contract",
-            body: "A compiled Node and TypeScript CLI controls setup, task mode, profiles, updates, cleanup, and validation without shipping source or tests to consumers.",
+            body: "The compiled-only npm package controls setup, task mode, profiles, updates, cleanup, and validation without shipping source or tests to consumers.",
             icon: TerminalSquare,
           },
           {
@@ -22,13 +22,13 @@ export function RuntimeLayerSection() {
             icon: ShieldCheck,
           },
           {
-            title: "Coverage and findings",
-            body: "Fresh delegated reviewers return exhaustive coverage ledgers and findings that remain bound to the current task cycle.",
+            title: "Extensible reviews",
+            body: "A guarded catalog adds custom lanes, profile states, and dependency graphs while each task keeps an immutable effective policy snapshot.",
             icon: FileWarning,
           },
           {
-            title: "Canonical evidence",
-            body: "Task-event history records the lifecycle; SQLite stays a disposable read projection and never authorizes trust-sensitive decisions.",
+            title: "Authenticated remediation",
+            body: "Eligible fixes can reuse evidence or receive a bounded delta review; stale, ambiguous, or sensitive changes fall back to a full review.",
             icon: GitBranch,
           },
         ].map((item) => {

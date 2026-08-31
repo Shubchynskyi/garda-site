@@ -108,16 +108,16 @@ export const heroHighlights = [
     body: "Use popular providers and local provider surfaces without letting each agent invent its own workflow.",
   },
   {
+    title: "Configure review lanes",
+    body: "Add guarded custom lanes, bind profile states and dependencies, and freeze the effective catalog for each task cycle.",
+  },
+  {
+    title: "Remediate with proof",
+    body: "Garda chooses authenticated `REUSE`, bounded `DELTA`, or conservative `FULL` review from current evidence and scope.",
+  },
+  {
     title: "Follow next-step",
-    body: "`garda next-step` shows the exact next command and now avoids repeated workspace reads through bounded snapshots and caches.",
-  },
-  {
-    title: "Prove review coverage",
-    body: "Cycle-bound delegated reviews use exhaustive coverage ledgers so every assigned file and behavior boundary is accounted for.",
-  },
-  {
-    title: "Scale local evidence",
-    body: "Canonical files remain authoritative while a disposable SQLite projection accelerates qualified bulk reads and project-memory search.",
+    body: "`garda next-step` routes catalog dependencies, remediation, recovery, and closeout through the exact next command.",
   },
 ];
 
