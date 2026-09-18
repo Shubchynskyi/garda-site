@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const expectedVersion = "1.4.2";
+const expectedVersion = "1.4.3";
 
 function readText(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -62,7 +62,7 @@ if (!fs.existsSync(path.join(root, "public", expectedSocialImage))) {
 }
 
 const requiredVisible = [
-  "Version 1.4.2",
+  "Version 1.4.3",
   "Guarded custom review lanes",
   "profile-owned dependency graphs",
   "authenticated `REUSE`, bounded `DELTA`, or conservative `FULL` review",

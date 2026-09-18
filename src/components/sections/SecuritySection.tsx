@@ -14,9 +14,9 @@ export function SecuritySection() {
       <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
         <div className="rounded-[30px] border border-white/10 bg-white/4 p-8 backdrop-blur-xl">
           <div className="text-sm uppercase tracking-[0.28em] text-cyan-200/72">Current release</div>
-          <div className="mt-3 text-2xl font-semibold text-white">v1.4.2 release line</div>
+          <div className="mt-3 text-2xl font-semibold text-white">v1.4.3 release line</div>
           <p className="mt-3 leading-7 text-white/62">
-            Garda 1.4.2 makes review policy extensible while keeping legacy workspaces conservative, then strengthens remediation and recovery around the frozen task cycle.
+            Garda 1.4.3 makes review policy extensible while keeping legacy workspaces conservative, then strengthens remediation and recovery around the frozen task cycle.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {[
