@@ -3,7 +3,6 @@ import {
   CHANGELOG_URL,
   CONTROL_PLANE_ISOLATION_URL,
   NPM_PACKAGE_URL,
-  SOCKET_BADGE_URL,
   SOCKET_PACKAGE_URL,
   THREAT_MODEL_URL,
 } from "../../content/links";
@@ -96,15 +95,6 @@ export function SecuritySection() {
               className="inline-flex items-center gap-3 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-3 py-2 text-sm font-medium text-emerald-50 transition hover:bg-emerald-300/15"
             >
               <ShieldCheck className="h-4 w-4" />
-              <img
-                src={SOCKET_BADGE_URL}
-                alt="Socket security badge for garda-agent-orchestrator"
-                loading="lazy"
-                className="h-5 w-auto"
-                onError={(event) => {
-                  event.currentTarget.hidden = true;
-                }}
-              />
               <span>Socket report</span>
               <ArrowRight className="h-4 w-4" />
             </a>
