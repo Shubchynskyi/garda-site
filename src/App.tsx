@@ -2,6 +2,7 @@ import { useLayoutEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { CliSurfaceSection } from "./components/sections/CliSurfaceSection";
 import { ComparisonSection } from "./components/sections/ComparisonSection";
+import { DashboardSection } from "./components/sections/DashboardSection";
 import { DemoSection } from "./components/sections/DemoSection";
 import { DocsSection } from "./components/sections/DocsSection";
 import { FinalCtaSection } from "./components/sections/FinalCtaSection";
@@ -66,6 +67,7 @@ export default function GardaLandingPage() {
         <ProfilesSection />
         <DocsSection />
         <CliSurfaceSection />
+        <DashboardSection />
         <StartSection />
         <SecuritySection />
         <SupportSection />
