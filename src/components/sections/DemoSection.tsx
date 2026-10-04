@@ -1,5 +1,6 @@
 import { DemoPanel } from "../demo/DemoPanel";
 import { SectionTitle } from "../ui/SectionTitle";
+import { YouTubeFacade } from "../ui/YouTubeFacade";
 
 export function DemoSection() {
   return (
@@ -10,14 +11,12 @@ export function DemoSection() {
         body="See how Garda routes a task through reviews, focused fixes, and verified completion."
       />
       <figure className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#080b11] shadow-[0_30px_100px_rgba(0,0,0,0.4)] md:mt-12 md:rounded-4xl">
-        <iframe
-          className="block aspect-video w-full border-0 bg-[#080b11]"
-          src="https://www.youtube-nocookie.com/embed/1J74BDu1sEI"
+        <YouTubeFacade
+          videoId="1J74BDu1sEI"
           title="Garda Agent Orchestrator — 2-minute demo"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
+          poster="/media/garda-cli-demo-poster.webp"
+          posterWidth={1280}
+          posterHeight={720}
         />
         <figcaption className="border-t border-white/10 px-4 py-3 text-sm leading-6 text-white/65 md:px-6">
           Recorded walkthrough · English captions available ·{" "}
