@@ -35,7 +35,7 @@ export function HeroSection() {
         <div>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 backdrop-blur-xl">
             <Sparkles className="h-4 w-4 text-cyan-200" />
-            AI coding agents need a workflow, not just a prompt.
+            Open-source workflow gates for AI coding agents
           </div>
           <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] text-white md:text-5xl lg:text-6xl">
             Make AI coding agents follow the same gates every time.

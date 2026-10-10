@@ -5,8 +5,8 @@ export function RuntimeLayerSection() {
   return (
     <section id="not-prompts" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <SectionTitle
-        eyebrow="Not just prompts"
-        title="Garda is a runtime layer, not a prompt pack"
+        eyebrow="Runtime layer"
+        title="Garda runs the workflow from a local CLI"
         body="Prompt files can suggest behavior. Garda gates workflow structure with a local CLI, lifecycle state, mandatory gates, review artifacts, and auditable completion."
       />
       <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">

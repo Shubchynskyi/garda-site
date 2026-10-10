@@ -126,7 +126,7 @@ export const whyGardaPoints = [
   "No vendor lock-in",
   "Works across AI coding tools",
   "Enforces task lifecycle and completion gates",
-  "Produces reviewable evidence, not just chat history",
+  "Leaves reviewable evidence for every task",
 ];
 
 export const startSteps: WorkflowStep[] = [
